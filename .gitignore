@@ -1,0 +1,11 @@
+# Virtual env
+env
+
+# JetBrains IDEs files
+.idea
+
+# Generetaed images directory
+output
+
+# Logs directory
+logs
