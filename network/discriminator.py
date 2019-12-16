@@ -7,6 +7,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras import Sequential
 from tensorflow.keras import Model
 
+
 class Discriminator:
     @staticmethod
     def strided_conv_block(output_dim: int, normalized: bool):
