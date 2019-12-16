@@ -52,4 +52,4 @@ class Discriminator:
 
         output = Discriminator.output_block()(x)
 
-        return Model([input_fake, input_real], output)
+        return Model(inputs=[input_image, target_image], outputs=output)
