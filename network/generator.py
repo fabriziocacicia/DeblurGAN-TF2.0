@@ -53,7 +53,7 @@ class Generator:
         return model
 
     @staticmethod
-    def generate_model():
+    def create_model():
         inputs = Generator.input_layer()
 
         x = inputs
