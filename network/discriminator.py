@@ -38,10 +38,10 @@ class Discriminator:
 
     @staticmethod
     def create_model():
-        input_fake = Input(shape=[256, 256, 3], name="discriminator_input_fake")
-        input_real = Input(shape=[256, 256, 3], name="discriminator_input_real")
+        input_image = Input(shape=[256, 256, 3], name="input_image")
+        target_image = Input(shape=[256, 256, 3], name="target_image")
 
-        x = Concatenate(name="discriminator_merged_input")([input_fake, input_real])
+        x = Concatenate(name="discriminator_merged_input")([input_image, target_image])
 
         x = Discriminator.strided_conv_block(output_dim=64, normalized=False)(x)
         x = Discriminator.strided_conv_block(output_dim=128, normalized=True)(x)
