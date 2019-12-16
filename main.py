@@ -6,5 +6,5 @@ if __name__ == '__main__':
     generator = Generator.generate_model()
     discriminator = Discriminator.create_model()
 
-    keras.utils.plot_model(model=generator, to_file="generator.png")
-    keras.utils.plot_model(model=discriminator, to_file="discriminator.png")
+    keras.utils.plot_model(model=generator, to_file="generator.png", show_shapes=True)
+    keras.utils.plot_model(model=discriminator, to_file="discriminator.png", show_shapes=True)
