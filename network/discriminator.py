@@ -9,6 +9,8 @@ from tensorflow.keras import Model
 
 
 class Discriminator:
+    def __init__(self):
+        self.model = self.create_model()
     @staticmethod
     def strided_conv_block(output_dim: int, normalized: bool):
         model = Sequential(name="conv_{}_block".format(output_dim))
