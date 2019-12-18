@@ -2,6 +2,9 @@ from tensorflow import keras
 
 
 class Generator:
+    def __init__(self):
+        self.model = self.create_model()
+
     @staticmethod
     def input_layer():
         return keras.layers.Input(shape=[256, 256, 3], name="generator_input")
