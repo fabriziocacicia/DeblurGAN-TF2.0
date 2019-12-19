@@ -6,11 +6,13 @@ from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Activation
 from tensorflow.keras import Sequential
 from tensorflow.keras import Model
+from tensorflow.keras.optimizers import Adam
 
 
 class Discriminator:
     def __init__(self):
         self.model = self.create_model()
+        self.optimizer = Adam(lr=0.0001, beta_1=0.5)
     @staticmethod
     def strided_conv_block(output_dim: int, normalized: bool):
         model = Sequential(name="conv_{}_block".format(output_dim))
