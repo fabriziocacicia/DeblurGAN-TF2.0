@@ -9,3 +9,9 @@ output
 
 # Logs directory
 logs
+
+# Dataset directory
+dataset
+
+# Pycache
+network/__pycache__
