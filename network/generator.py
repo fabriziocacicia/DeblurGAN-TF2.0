@@ -1,9 +1,11 @@
 from tensorflow import keras
+from tensorflow.keras.optimizers import Adam
 
 
 class Generator:
     def __init__(self):
         self.model = self.create_model()
+        self.optimizer = Adam(lr=0.0001, beta_1=0.5)
 
     @staticmethod
     def input_layer():
