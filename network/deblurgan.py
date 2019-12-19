@@ -4,8 +4,5 @@ from network.generator import Generator
 
 class DeblurGAN:
     def __init__(self):
-        generator = Generator()
-        self.generator = generator.model
-
-        discriminator = Discriminator()
-        self.discriminator = discriminator.model
+        self.generator = Generator()
+        self. discriminator = Discriminator()
