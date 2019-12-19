@@ -75,10 +75,7 @@ class Generator:
         x = Generator.strided_deconv_block(64)(x)
 
         x = Generator.final_block()(x)
-        
+
         outputs = keras.layers.Add(name="generator_output")([inputs, x])
 
         return keras.Model(inputs=inputs, outputs=outputs)
-
-
-
