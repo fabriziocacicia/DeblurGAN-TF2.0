@@ -1,9 +1,9 @@
 from tensorflow.keras.layers import Input
-from tensorflow.keras.layers import Concatenate
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Sequential
 from tensorflow.keras import Model
 from tensorflow.keras.optimizers import Adam
@@ -13,6 +13,7 @@ class Discriminator:
     def __init__(self):
         self.model = self.create_model()
         self.optimizer = Adam(lr=0.0001, beta_1=0.5)
+
     @staticmethod
     def strided_conv_block(output_dim: int, normalized: bool):
         model = Sequential(name="conv_{}_block".format(output_dim))
@@ -37,15 +38,15 @@ class Discriminator:
         model = Sequential(name="discriminator_output")
         model.add(Conv2D(filters=1, kernel_size=4, padding="same"))
         model.add(Activation("sigmoid"))
+        model.add(Flatten())
+        model.add(Dense(1))
 
         return model
 
     @staticmethod
     def create_model():
-        input_image = Input(shape=[256, 256, 3], name="input_image")
-        target_image = Input(shape=[256, 256, 3], name="target_image")
-
-        x = Concatenate(name="discriminator_merged_input")([input_image, target_image])
+        inputs = Input(shape=[256, 256, 3], name="input_image")
+        x = inputs
 
         x = Discriminator.strided_conv_block(output_dim=64, normalized=False)(x)
         x = Discriminator.strided_conv_block(output_dim=128, normalized=True)(x)
@@ -54,6 +55,6 @@ class Discriminator:
 
         x = Discriminator.second_last_conv_block()(x)
 
-        output = Discriminator.output_block()(x)
+        outputs = Discriminator.output_block()(x)
 
-        return Model(inputs=[input_image, target_image], outputs=output)
+        return Model(inputs=inputs, outputs=outputs)
