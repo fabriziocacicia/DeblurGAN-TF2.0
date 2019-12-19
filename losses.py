@@ -9,7 +9,7 @@ vgg19.trainable = False
 
 
 def wasserstein_loss(y_true, y_pred):
-    return backend.mean(y_true * y_pred)
+    return backend.mean(y_pred) - backend.mean(y_true)
 
 
 def gradient_penalty(real, generated, discriminator):
