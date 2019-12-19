@@ -1,9 +1,8 @@
-from tensorflow.keras import backend
-from tensorflow.keras import Model
-from tensorflow.keras.losses import mean_squared_error
 import tensorflow as tf
+from tensorflow.keras import Model
+from tensorflow.keras import backend
 from tensorflow.keras.applications import VGG19
-
+from tensorflow.keras.losses import mean_squared_error
 
 vgg19 = VGG19(include_top=False, weights='imagenet')
 vgg19.trainable = False
@@ -53,4 +52,3 @@ class PerceptualLoss:
         gen_feature_map = self.vgg_conv3_3(generated)
 
         return mean_squared_error(real_feature_map, gen_feature_map)
-
