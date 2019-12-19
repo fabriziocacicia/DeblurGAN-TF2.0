@@ -45,7 +45,7 @@ class Discriminator:
 
     @staticmethod
     def create_model():
-        inputs = Input(shape=[256, 256, 3], name="input_image")
+        inputs = Input(shape=[256, 256, 3], name="discriminator_input")
         x = inputs
 
         x = Discriminator.strided_conv_block(output_dim=64, normalized=False)(x)
@@ -57,4 +57,4 @@ class Discriminator:
 
         outputs = Discriminator.output_block()(x)
 
-        return Model(inputs=inputs, outputs=outputs)
+        return Model(inputs=inputs, outputs=outputs, name="discriminator")

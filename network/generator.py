@@ -78,4 +78,4 @@ class Generator:
 
         outputs = keras.layers.Add(name="generator_output")([inputs, x])
 
-        return keras.Model(inputs=inputs, outputs=outputs)
+        return keras.Model(inputs=inputs, outputs=outputs, name="generator")
