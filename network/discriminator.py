@@ -3,7 +3,6 @@ from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Activation
-from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Sequential
 from tensorflow.keras import Model
 from tensorflow.keras.optimizers import Adam
@@ -38,8 +37,6 @@ class Discriminator:
         model = Sequential(name="discriminator_output")
         model.add(Conv2D(filters=1, kernel_size=4, padding="same"))
         model.add(Activation("sigmoid"))
-        model.add(Flatten())
-        model.add(Dense(1))
 
         return model
 
