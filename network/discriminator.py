@@ -3,6 +3,7 @@ from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import Concatenate
 from tensorflow.keras import Sequential
 from tensorflow.keras import Model
 from tensorflow.keras.optimizers import Adam
@@ -42,8 +43,10 @@ class Discriminator:
 
     @staticmethod
     def create_model():
-        inputs = Input(shape=[256, 256, 3], name="discriminator_input")
-        x = inputs
+        input_fake = Input(shape=[256, 256, 3], name="discriminator_input_fake")
+        input_real = Input(shape=[256, 256, 3], name="discriminator_input_real")
+
+        x = Concatenate(name="discriminator_merged_input")([input_fake, input_real])
 
         x = Discriminator.strided_conv_block(output_dim=64, normalized=False)(x)
         x = Discriminator.strided_conv_block(output_dim=128, normalized=True)(x)
@@ -54,4 +57,4 @@ class Discriminator:
 
         outputs = Discriminator.output_block()(x)
 
-        return Model(inputs=inputs, outputs=outputs, name="discriminator")
+        return Model(inputs=[input_fake, input_real], outputs=outputs, name="discriminator")
